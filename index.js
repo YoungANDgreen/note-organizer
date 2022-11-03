@@ -1,7 +1,7 @@
 const express = require('express');
 
 
-const notes = require('./Develop/routes/notes');
+const notes = require('./notes');
 
 
 const app = express();

@@ -1,6 +1,6 @@
 const note = require('express').Router();
-const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
-const uuid = require('../helpers/uuid');
+const { readFromFile, readAndAppend } = require('./Develop/helpers/fsUtils');
+const uuid = require('./Develop/helpers/uuid');
 
 
 note.get('/', (req, res) =>
