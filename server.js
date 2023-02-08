@@ -1,28 +1,25 @@
-const express = require('express');
-const path = require('path');
-const api = require('./assets/js/index');
 
-const PORT = process.env.PORT || 3001;
 
+const express = require("express");
+const path = require("path");
+
+// creates an express server
 const app = express();
 
-// Middleware for parsing JSON and urlencoded form data
-app.use(express.json());
+// sets the port to be listening on
+const PORT = process.env.PORT || 3000;
+
+// Sets up the Express app to be able to parse data
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', api);
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "./public")));
 
-app.use(express.static('public'));
+// routers
+require("./routes/index")(app);
+require("./routes/notes")(app);
 
-// GET Route for homepage
-app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/index.html'))
-);
+// function to listen
 
-
-app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/notes.html'))
-);
-
-app.listen(PORT, () =>
-  console.log(`App listening at http://localhost:${PORT} 🚀`)
-);
+app.listen(PORT, function () {
+  console.log("App listening on PORT: " + PORT);
+});
